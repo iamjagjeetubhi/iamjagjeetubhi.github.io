@@ -1,0 +1,79 @@
+---
+layout: post
+title: Getting started with GIT.
+date: 2016-06-07 18:04:19.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _oembed_3bbb8794a455913b9d0767d337c2e3ff: "{{unknown}}"
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23606040037'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>GIT: It is a distributed version control system (system to record changes to files over time) having many features like it helps to add access control,display content of git repository (place where multiple files are located) and help managing multiple repositories.</p>
+<p><strong>Create an account:</strong></p>
+<pre>http://www.github.com</pre>
+<p><strong>Install GIT.</strong></p>
+<ul>
+<li>You can use the <code>apt</code> package management tools to update your local package index. Afterwards, you can install GIT:</li>
+</ul>
+<pre>$ sudo apt-get update
+$ sudo apt-get install git
+</pre>
+<p><strong>Setup GIT.</strong></p>
+<ul>
+<li>Now that you have <code>git</code> installed, you need to do a few things so that the commit messages that will be generated for you will contain your correct information.The easiest way of doing this is through the <code>git config</code> command. Specifically, we need to provide our name and email address because <code>git</code> embeds this information into each commit we do. We can go ahead and add this information by typing:</li>
+</ul>
+<pre>$ git config --global user.name "Your Name"
+$ git config --global user.email "youremail@domain.com"</pre>
+<ul>
+<li>We can see all of the configuration items that have been set by typing:</li>
+</ul>
+<pre class="code-pre command"><code>$ git config --list</code></pre>
+<p><strong>Creating First Repository.</strong></p>
+<ul>
+<li>Go to the dashboard of git and click on the + sign which is there in right side at the top. Click on new repository.</li>
+<li>Give your repository name (Let it be firstrepo) and description as per your choice. Then, you can choose public or private repository.</li>
+</ul>
+<p><strong>Create a directory for that Repository.</strong></p>
+<ul>
+<li>Now create a directory to link it with repository:</li>
+</ul>
+<pre>$ mkdir firstrepo</pre>
+<ul>
+<li>Open directory:</li>
+</ul>
+<pre>$ cd firstrepo</pre>
+<ul>
+<li>Create or Copy the files in this directory which you want to upload on git repository name as firstrepo.</li>
+<li>Now initialize the git in this directory using:</li>
+</ul>
+<pre>$ git init</pre>
+<ul>
+<li>Now add the newly created or copied file to git using:</li>
+</ul>
+<pre>$ git add filename</pre>
+<ul>
+<li>You need to commit your file in order to save your changes in git. You can commit your file using:</li>
+</ul>
+<pre>$ git commit -m “first commit”</pre>
+<ul>
+<li>Now creates a new remote called <code>origin</code> using:</li>
+</ul>
+<pre>$ git remote add origin https://github.com/username/repositoryname.git</pre>
+<ul>
+<li>Now you can push to <code>origin</code> for that you have to enter github Username and Password.</li>
+</ul>
+<pre>$ git push origin master
+</pre>
+<p><strong>Stay Tuned Thanks :)</strong></p>

@@ -1,0 +1,35 @@
+---
+layout: post
+title: How to fix Genymotion in linux with error `CXXABI_1.3.8' not found.
+date: 2016-06-30 16:26:00.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '24344689591'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>Whenever I am trying to start genymotion(run command <code>./genymotion</code>), the following error shown in my terminal.</p>
+<pre>./genymotion: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.8' not found (required by /home/jagjeet/Downloads/genymotion/libQt5Core.so.5)
+./genymotion: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.20' not found (required by /home/jagjeet/Downloads/genymotion/libQt5WebKit.so.5)
+./genymotion: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.8' not found (required by /home/jagjeet/Downloads/genymotion/libicui18n.so.52)
+./genymotion: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.8' not found (required by /home/jagjeet/Downloads/genymotion/libicuuc.so.52)
+./genymotion: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.20' not found (required by /home/jagjeet/Downloads/genymotion/libQt5Qml.so.5)</pre>
+<p><strong>Run the following commands to fix this:</strong></p>
+<pre>$ LD_LIBRARY_PATH=/usr/local/lib64/:$LD_LIBRARY_PATH
+</pre>
+<pre>$ export LD_LIBRARY_PATH</pre>
+<pre>$ sudo apt-add-repository ppa:ubuntu-toolchain-r/test</pre>
+<pre>$ sudo apt-get update</pre>
+<pre>$ sudo apt-get install gcc-4.9 g++-4.9</pre>
+<p>Thank's.</p>

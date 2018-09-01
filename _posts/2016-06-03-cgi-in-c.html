@@ -1,0 +1,64 @@
+---
+layout: post
+title: CGI in C++
+date: 2016-06-03 05:13:49.000000000 +05:30
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23459731239'
+  _rest_api_published: '1'
+  _oembed_cb0dcef3f3105123b8ae4ab18868e018: "{{unknown}}"
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p><b>Common Gateway Interface</b> (<b>CGI</b>) is a standard way for web servers to interface with executable program installed on a server that generate web pages dynamically.</p>
+<ul>
+<li>Open directory /etc/apache2/</li>
+<li>Create a new file "httpd.cfg" with following content</li>
+</ul>
+<pre>ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+&lt;Directory /usr/lib/cgi-bin/&gt;
+AllowOverride None
+Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+SetHandler cgi-script
+Order allow,deny
+Allow from all
+AddHandler cgi-script .cgi .pl
+&lt;/Directory&gt;</pre>
+<ul>
+<li>Include “httpd.cfg” in /etc/apache2/apache2.conf by adding following</li>
+</ul>
+<pre>Include httpd.cfg</pre>
+<ul>
+<li> Now go to /usr/lib/cgi-bin/ and create a file named “test.cpp” with following contents-</li>
+</ul>
+<pre>#include&lt;iostream&gt;
+using namepace std;
+
+int main(){
+cout&lt;&lt;"Content-type:text/plain\n";
+cout&lt;&lt;"cgi is working";
+return 0;
+}
+</pre>
+<ul>
+<li>Now compile the file using following command-</li>
+</ul>
+<pre>$ g++ test.cpp -o test.out
+</pre>
+<ul>
+<li>Now open the browser and type-</li>
+</ul>
+<pre>http://localhost/cgi-bin/test.out</pre>
+<ul>
+<li>You will see a nice “Hello World!” on screen.</li>
+</ul>
+<p><em>--via <a href="http://www.fumblehool.wordpress.com" target="_blank">Damanpreet</a></em></p>

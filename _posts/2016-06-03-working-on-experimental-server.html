@@ -1,0 +1,38 @@
+---
+layout: post
+title: Working on Experimental Server.
+date: 2016-06-03 18:32:27.000000000 +05:30
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _oembed_a8ed28a211d7e046cadf9ce2db4c07b9: "{{unknown}}"
+  _publicize_job_id: '23479498063'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>Today, I worked on Experimental Server that teach me something about:</p>
+<pre>$ sudo</pre>
+<p>I logged into Experimental Server using:</p>
+<pre>$ ssh iamjagjeetubhi@202.164.53.122</pre>
+<p>But I was not able to open my server in browser using link:</p>
+<pre>http://202.164.53.122/~iamjagjeetubhi/</pre>
+<p>I was getting the error:</p>
+<blockquote><p>403 Forbidden<br />
+You don't have permissions to access /~iamjagjeetubhi/ on this server.</p></blockquote>
+<p>I was continuously giving execution permission for others to public_html directory using:</p>
+<pre>$ sudo chmod o+rx public_html</pre>
+<p>and getting the error:</p>
+<blockquote><p>"iamjagjeetubhi is not in the sudoers file.<br />
+This incident will be reported."</p></blockquote>
+<p>At last I came to know I don't have sudo power. So, I can't use sudo then I tried above command without sudo :</p>
+<pre>$ chmod o+rx public_html</pre>
+<p>Finally, it works and now I can see my public_html directory in browser :)</p>

@@ -1,0 +1,138 @@
+---
+layout: post
+title: A Basic MySQL Tutorial.
+date: 2016-07-01 20:13:11.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '24383950412'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p><strong>About MySQL.</strong></p>
+<p>MySQL is an open source database management software that helps users store, organize, and retrieve data. It is a very powerful program with a lot of flexibility—this tutorial will provide the simplest introduction to MySQL.</p>
+<p><strong>How to Install MySQL on Ubuntu.</strong></p>
+<pre>$ sudo apt-get install mysql-server</pre>
+<p><strong>How to Access the MySQL shell.</strong></p>
+<p>Once you have MySQL installed on your system, you can access the MySQL shell by typing the following command into terminal:</p>
+<pre>$ mysql -u &lt;username&gt;  -p&lt;password&gt;</pre>
+<p><strong>List of all the current databases for the user.</strong></p>
+<pre>show databases;</pre>
+<p>Example:</p>
+<pre>mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| newuser            |
+| performance_schema |
+| phpmyadmin         |
++--------------------+
+5 rows in set (0.00 sec)
+</pre>
+<p><strong>To use a particular database use the following command:</strong></p>
+<pre>use &lt;databasename&gt;;</pre>
+<p>Example:</p>
+<pre>mysql&gt; use newuser;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+</pre>
+<p><strong>To create a table:</strong></p>
+<pre>create table &lt;tablename&gt; (&lt;columnname&gt; &lt;datatype&gt; (size), &lt;columnname&gt; &lt;datatype&gt; (size));</pre>
+<p>Example:</p>
+<pre>mysql&gt; create table students (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(20), class varchar(20));
+ERROR 1050 (42S01): Table 'students' already exists
+</pre>
+<p><strong>To see the structure of the table:</strong></p>
+<pre>describe &lt;tablename&gt;;</pre>
+<p>Example:</p>
+<pre>mysql&gt; describe students;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
+| class | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.26 sec)
+</pre>
+<p><strong>To insert values into table:</strong></p>
+<pre>insert into &lt;tablename&gt; values ("&lt;&gt;", "&lt;&gt;", "&lt;&gt;");
+</pre>
+<p>Example:</p>
+<pre>mysql&gt; insert into students values (NULL, "Jagjeet", "D3IT");
+Query OK, 1 row affected (0.12 sec)</pre>
+<p><strong>To see values in a table:</strong></p>
+<pre>select * from &lt;tablename&gt;;</pre>
+<p>Example:</p>
+<pre>mysql&gt; select * from students;
++----+---------+-------+
+| id | name    | class |
++----+---------+-------+
+|  1 | Jagjeet | D3IT  |
++----+---------+-------+
+1 row in set (0.08 sec)</pre>
+<p><strong>To update any value:</strong></p>
+<pre>update &lt;tablename&gt; set value="&lt;&gt;" where value="&lt;&gt;";</pre>
+<p>Example:</p>
+<pre>mysql&gt; update students set name="harpreet" where name="Jagjeet";
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; select * from students;
++----+----------+-------+
+| id | name     | class |
++----+----------+-------+
+|  1 | harpreet | D3IT  |
++----+----------+-------+
+1 row in set (0.00 sec)</pre>
+<p><strong>To add new column:</strong></p>
+<pre>alter table &lt;tablename&gt; add &lt;columnname&gt; &lt;datatype&gt;(size);</pre>
+<p>Example:</p>
+<pre>mysql&gt; alter table students add email varchar(20);
+Query OK, 1 row affected (0.75 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql&gt; select * from students;
++----+----------+-------+-------+
+| id | name | class | email |
++----+----------+-------+-------+
+| 1 | harpreet | D3IT | NULL |
++----+----------+-------+-------+
+1 row in set (0.00 sec)</pre>
+<p><strong>Similarly to delete a column:</strong></p>
+<pre>alter table &lt;tablename&gt; drop &lt;columnname&gt;;</pre>
+<p>Example:</p>
+<pre>mysql&gt; alter table students drop email;
+Query OK, 1 row affected (0.32 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql&gt; select * from students;
++----+----------+-------+
+| id | name     | class |
++----+----------+-------+
+|  1 | harpreet | D3IT  |
++----+----------+-------+
+1 row in set (0.00 sec)</pre>
+<p><strong>To delete a row of value:</strong></p>
+<pre>delete from &lt;tablename&gt; where value="&lt;&gt;";</pre>
+<p>Example:</p>
+<pre>mysql&gt; delete from students where name="harpreet";
+Query OK, 1 row affected (0.13 sec)
+
+mysql&gt; select * from students;
+Empty set (0.00 sec)</pre>
+<p><strong>Thank's.</strong></p>

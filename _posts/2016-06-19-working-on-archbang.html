@@ -1,0 +1,32 @@
+---
+layout: post
+title: Working on ArchBang.
+date: 2016-06-19 14:05:58.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _oembed_2190cd6e39afffea05e55a8405c3ef0a: "{{unknown}}"
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23983630130'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>I have been working on ArchBang for last three days. I don't had any plan to change from Ubuntu to ArchBang. I installed Gnome on my Ubuntu 15.10 while removing the Gnome packages unfortunately I also removed <code>lightdm</code> and <code>gdm</code> packages. The reason for removing Gnome is same as uninstalling any launcher from your smartphone that you installed to make your interface beautiful then I want any linux OS that have a little GUI and tend to work me on command line. <a href="http://www.amritpals.com">Amritpal</a> suggest me to install <code>Arch linux</code> he gave me <code>.iso</code> file of Arch Linux. It was to be installed from command line. I read the Readme file carefully but I stucked because it needs an ethernet connection. I also enable USB tethering from my mobile but it did not work. Then <a href="http://www.amritpals.com">Amritpal </a>asked me to download <code>ArchBang</code> because it provides GUI for installation. I downloaded the <code>.iso</code> file from below link:</p>
+<pre><a href="http://ufpr.dl.sourceforge.net/project/archbang/archbang-openrc-rc-140616-i686.iso">archbang-openrc-rc-140616-i686.iso</a></pre>
+<p>After that I host image from my rooted android device using <code>DriveDroid</code> application. The major steps for installing ArchBang are creating <code>root/</code> and <code>home/</code> directory in <code>/mnt/</code> directory then I mounted my root and home partitions to <code>/mnt/root/ </code> and <code>/mnt/home/ </code>. After successful installation system reboots but it has no GUI. I asked <a href="http://mandeep7.wordpress.com">Mandeep</a> for help because he is familiar with <code>Arch</code> commands. While running:</p>
+<pre>$ sudo pacman -Sy</pre>
+<p>I was facing an error because I didn't enable any mirror in mirrorlist.</p>
+<pre>/etc/pacman.d/mirrorlist</pre>
+<p>Then I uncommented <code>India</code> and it's <code>servers</code>. while installing <code>ArchBang</code> I forgot to format the root partition. Then again I reinstalled it by formatting root partition. But it still was giving the error while running <code>startx</code> then <a href="http://mandeep7.wordpress.com">Mandeep</a> installed <code>Xfce</code> and ask me to run GUI from <code>startxfce4</code> command. But after installing <code>Xfce</code> command <code>startx</code> is also working. Now while installing or removing any package I was getting error</p>
+<pre>warning: config file /etc/pacman.d/mirrorlist, line 226: directive 'Server' in section 'options' not recognized.</pre>
+<p>Then I uncommented <code>Testing</code> in <code>/etc/pacman.conf</code> file and Now, I am free from this error.</p>
+<p>Thanks <a href="http://amritpals.com">Amritpal</a> and <a href="http://mandeep7.wordpress.com">Mandeep</a>. :)</p>

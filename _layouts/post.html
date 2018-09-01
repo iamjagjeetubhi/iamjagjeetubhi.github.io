@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<main>
+  <div class="position-relative">
+    <!-- shape Hero -->
+    <section class="section section section-shaped my-0 overflow-hidden">
+      <div class="shape shape-style-1 bg-gradient-warning shape-skew">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="container pt-lg-md">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="card bg-secondary shadow border-0 mt-5">
+              <div class="card-body px-lg-5 py-lg-5">
+                <h1>{{ page.title }}</h1>
+                {% include post_meta.html %}
+                {{ content }}
+                <div class="card-header bg-white pb-5">
+                  {% include social_share.html %}
+                  <br>
+                  {% include mail_form.html %}
+                  <br>
+                  {% if page.comments %}
+                  {% include comment_disqus.html %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+</body>
+</html>

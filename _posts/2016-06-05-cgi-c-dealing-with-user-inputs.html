@@ -1,0 +1,90 @@
+---
+layout: post
+title: CGI | C++ Dealing with user inputs.
+date: 2016-06-05 20:18:30.000000000 +05:30
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _oembed_11314553bea465db743fe1e8267a05f8: "{{unknown}}"
+  _oembed_0a26e10a4be7d42eaf96ea6e157736a1: "{{unknown}}"
+  _oembed_e244ba3e678fc7765ef975888e1fb6be: "{{unknown}}"
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23541997765'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>During my satuday's presentation on "CGI using C++" Sir asked me to run a program that shows a table of any given value up to 20 in front of us. I felt nervous and I did in private. The output was in paragraph that was looking ugly. But I was happy in that ugly output. In that program it was not possible to get value from user then I spend my time to make a program in which user can give any integer value to get table of that value.</p>
+<ul>
+<li>The following is a CGI program called fact.cpp that uses query information supplied by the form.</li>
+</ul>
+<pre>#include &lt;iostream&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+using namespace std;
+int main()
+{
+string value, s; // declaration
+s = getenv("QUERY_STRING"); // s stores the query string extracted from URL
+int a =s.length(); // a stores length of query string
+int b =s.find("="); // b stores the index number or simply number where “=” is found in the string
+value = s.substr(b+1,a); // value stores the value part of the string specified after “=”
+int i;
+int n= atof(value.c_str()); // atof() converts string to int which gets stored in n
+cout&lt;&lt; "Content-Type : text/html \n\n";cout&lt;&lt; "&lt;html&gt; &lt;head&gt; &lt;title&gt; Table &lt;/title&gt; &lt;/head&gt;";
+cout&lt;&lt; "&lt;body bgcolor= green&gt;&lt;center&gt; ";
+for (int i = 1; i &lt;= 20; ++i) {
+cout &lt;&lt; n &lt;&lt; " * " &lt;&lt; i &lt;&lt; " = " &lt;&lt; n*i &lt;&lt; "&lt;br&gt;";
+}
+cout&lt;&lt; " &lt;/center&gt;&lt;/body&gt; &lt;/html&gt;";
+return 0;
+}
+</pre>
+<ul>
+<li>Compile the file using:</li>
+</ul>
+<pre>$ g++ fact.cpp -o fact.out</pre>
+<ul>
+<li>Change the permission:</li>
+</ul>
+<pre>$ chmod 0+wx fact.out</pre>
+<ul>
+<li>Create a form.cpp file that contains the form in CGI format.</li>
+</ul>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+cout&lt;&lt;"Content-Type: text/html \n\n";
+cout&lt;&lt;"&lt;html&gt;&lt;head&gt;&lt;title&gt; Check the Number&lt;/title&gt;&lt;/head&gt;";
+cout&lt;&lt;"&lt;body bgcolor = green &gt;&lt;form action=http://202.164.53.122/~iamjagjeetubhi/cgi-bin/fact.out method=get&gt;&lt;center&gt;&lt;p&gt; &lt;h3&gt;Enter any Number&lt;/h3&gt;&lt;/p&gt;&lt;input type=text name=n&gt;&lt;p&gt;&lt;h4&gt;&lt;input type = submit value= Submit &gt;&lt;/h4&gt; &lt;/p&gt;&lt;/form&gt;&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;";
+return 0;
+}
+</pre>
+<ul>
+<li>Compile the file using:</li>
+</ul>
+<pre>$ g++ form.cpp -o form.out</pre>
+<ul>
+<li>Change permissions:</li>
+</ul>
+<pre>$ chmod 755 form.out</pre>
+<ul>
+<li>Keep both the files in ~/public_html/cgi-bin/</li>
+<li>Make sure your ~/public_html/cgi-bin/ have right permissions otherwise run:</li>
+</ul>
+<pre>$ chmod -R /public_html/</pre>
+<ul>
+<li>Now run your program on browser using:</li>
+</ul>
+<pre>http://address/cgi-bin/form.out</pre>
+<ul>
+<li>See the example here:  <a href="http://202.164.53.122/~iamjagjeetubhi/cgi-bin/form.out">CGI form example</a></li>
+</ul>

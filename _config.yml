@@ -1,0 +1,36 @@
+title: Jagjeet Singh
+email: iamjagjeetubhi@gmail.com
+author: Jagjeet Singh
+description: A Singh's Blog!
+keywords: 'python, django, html, css, bootstrap, git, singh'
+url: 'https://jagjeet.me'
+timezone: Asia/Kolkata
+username: iamjagjeetubhi
+
+links:
+  repo: 'https://github.com/iamjagjeetubhi/iamjagjeetubhi.github.io'
+  github: 'https://github.com/iamjagjeetubhi'
+  twitter: 'https://twitter.com/iamjagjeetubhi'
+  facebook: 'https://www.facebook.com/iamjagjeetubhi'
+  linkedin: 'https://www.linkedin.com/in/iamjagjeetubhi'
+  instagram: 'https://instagram.com/jaggjitt'
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+paginate: 8
+paginate_path: /blog/:num
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-mentions
+  - jemoji
+  - jekyll-gist
+
+exclude:
+  - vendor
+  - LICENSE.md
+  - README.md

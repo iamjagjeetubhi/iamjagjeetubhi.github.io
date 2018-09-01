@@ -1,0 +1,164 @@
+---
+layout: post
+title: 'Install YOURLS: Your Own URL Shortener'
+date: 2016-06-12 20:06:57.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23768782570'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p><strong>What is <code>YOURLS?</code></strong></p>
+<p><strong>YOURLS</strong> stands for <strong>Your Own URL Shortener</strong>. It is a small set of PHP scripts that will allow you to run your own URL shortening service (TinyURL or bitly).</p>
+<p><strong>How to install YOURLS.</strong></p>
+<ul>
+<li>First of all download YOURLS zip package :</li>
+</ul>
+<p><code><a href="https://github.com/YOURLS/YOURLS/archive/1.7.1.zip">YOURLS 1.7.1</a></code></p>
+<ul>
+<li>Extract this .zip file:</li>
+</ul>
+<pre>$ unzip YOURLS 1.7.1.zip</pre>
+<ul>
+<li>Now directory to yourls:</li>
+</ul>
+<pre>$ mv YOURLS 1.7.1 yourls</pre>
+<ul>
+<li>Copy this Directory to Document Root of your server:</li>
+</ul>
+<pre>$ cp -r yourls/ var/www/html/</pre>
+<ul>
+<li>If you are not root user copy this to <code>public_html</code> directory.</li>
+</ul>
+<ul>
+<li>Now open <code>/var/www/html/yourls/user/</code></li>
+</ul>
+<ul>
+<li>Copy <code>config-sample.php</code> to <code>config.php</code></li>
+</ul>
+<pre>$ sudo cp config-sample.php config.php</pre>
+<ul>
+<li>Now open the <code>config.php</code></li>
+</ul>
+<pre>$ sudo vim config.php</pre>
+<ul>
+<li>In this file you will find something like this:</li>
+</ul>
+<pre>/** MySQL database username */
+define( 'YOURLS_DB_USER', 'root' );
+
+/** MySQL database password */
+define( 'YOURLS_DB_PASS', '*****' );
+
+/** The name of the database for YOURLS */
+define( 'YOURLS_DB_NAME', 'yourls' );
+
+/** MySQL hostname.
+ ** If using a non standard port, specify it like 'hostname:port', eg. 'localhost:9999' or '127.0.0.1:666' */
+define( 'YOURLS_DB_HOST', 'localhost' );
+
+/** MySQL tables prefix */
+define( 'YOURLS_DB_PREFIX', 'yourls_' );
+
+/*
+ ** Site options
+ */
+
+/** YOURLS installation URL -- all lowercase and with no trailing slash.
+ ** If you define it to "http://sho.rt", don't use "http://www.sho.rt" in your browser (and vice-versa) */
+/** Browser will not load its CSS files if you dont write /yourls with localhost below.
+** But you can also set virtual host or your document root to localhost/yourls from localhost. */
+define( 'YOURLS_SITE', 'http://localhost/yourls' );
+/** In case of experimental server this is */
+define( 'YOURLS_SITE', 'http://202.164.53.202/~iamjagjeetubhi/yourls' );
+</pre>
+<ul>
+<li> Enter your Database details in it. If you dont have then create it first.</li>
+</ul>
+<ul>
+<li><strong>Now things we have to do need root access.</strong></li>
+</ul>
+<ul>
+<li>Enabling mod_rewrite</li>
+</ul>
+<pre> $ sudo a2enmod rewrite</pre>
+<ul>
+<li>Now Restart the apache:</li>
+</ul>
+<pre>$ sudo service apache2 restart</pre>
+<ul>
+<li> Open <code>/etc/apache2/</code></li>
+</ul>
+<ul>
+<li>Edit the file <code>apache2.conf</code></li>
+</ul>
+<pre>$ sudo vim apache2.conf</pre>
+<ul>
+<li>You will see something like this in that file:</li>
+</ul>
+<pre>        
+	Options Indexes FollowSymLinks
+	AllowOverride None
+	Require all granted
+         
+</pre>
+<ul>
+<li> Change the: <code>AllowOverride None</code> to <code>AllowOverride All</code></li>
+</ul>
+<ul>
+<li>Again Restart the Apache:</li>
+</ul>
+<pre>$ sudo service apache2 restart</pre>
+<ul>
+<li>Now open directory <code>/var/www/html/yourls/</code></li>
+</ul>
+<ul>
+<li>Create a file <code>.htaccess<br />
+</code></li>
+<li>Change it's permission:</li>
+</ul>
+<pre>$ sudo chmod 777 .htaccess</pre>
+<ul>
+<li>If <code>.htaccess</code> file creation/updating failed because of file permission, you'll have to manually make one. No worry, it's simple.</li>
+</ul>
+<pre># BEGIN YOURLS
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /yourls-loader.php [L]
+
+# END YOURLS
+</pre>
+<ul>
+<li> It is last time you need to Restart apache:</li>
+</ul>
+<pre>$ sudo service apache2 restart</pre>
+<ul>
+<li>Open browser and goes to <code>http://localhost/yourls/admin/</code>  (YOURL_SITE address that you put in /yourls/user/config.php)</li>
+</ul>
+<ul>
+<li>Now click on Install Yourls.</li>
+</ul>
+<ul>
+<li>Enter your username and password that you have set in /yourls/user/config.php. By default username is <code>username</code> and password is <code>password</code></li>
+</ul>
+<ul>
+<li>Once your installation is completed Start creating <code>short URL</code></li>
+</ul>
+<ul>
+<li>Open that short URL by adding with <code>YOURL_SITE</code> name. i.e http://localhost/yourls/short_url_here/</li>
+</ul>
+<p><strong>Thanks :)</strong></p>

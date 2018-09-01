@@ -1,0 +1,45 @@
+---
+layout: post
+title: Start Apache and Mysql in Kali Linux.
+date: 2017-04-10 16:31:14.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Kali Linux
+tags:
+- Apache
+- debian
+- kali
+- kalilinux
+- linux
+- mysql
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '3843500101'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>Apache and Mysql comes pre-installed in Kali Linux. But whenever we open <strong>localhost </strong>in our browser we got the error. It is because we have not started the apache service as it is installed but not running.</p>
+<p><strong>To start the Apache service in Kali linux use the following command:</strong></p>
+<p><code>sudo /etc/init.d/apache2 start </code></p>
+<p><strong>Similarly if you want to stop and restart the apache service just use the below commands:</strong></p>
+<p><code>sudo /etc/init.d/apache2 stop</code><br />
+<code>sudo /etc/init.d/apache2 restart</code></p>
+<blockquote><p>Apache service will not be start on boot automatically. To do so we have to run the following command:</p></blockquote>
+<p><code>sudo update-rc.d apache2 enable</code></p>
+<p>The above command will make the apache service start on boot.</p>
+<p><strong>Now to start and the Mysql service in Kali Linux just use the below commands:</strong></p>
+<p><code>sudo /etc/init.d/mysql start</code><br />
+<code>sudo /etc/init.d/mysql stop</code><br />
+<code>sudo /etc/init.d/mysql restart</code></p>
+<blockquote><p>Mysql service will not be start on boot automatically. To do so we have to run the following command:</p></blockquote>
+<p><code>sudo update-rc.d mysql enable</code></p>
+<p>The above command will make the mysql service start on boot.</p>
+<p><strong>Thanks for Reading. </strong></p>
+<p><em>COMMENTS ARE OUR FOOD SO FEED US SAYING THANKS! IF IT HELPS!</em></p>

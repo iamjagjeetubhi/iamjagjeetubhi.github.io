@@ -1,0 +1,53 @@
+---
+layout: post
+title: Configure Ubuntu server to use PhP Mail() Function / Configure Postfix to Use
+  Gmail SMTP on Ubuntu
+date: 2017-01-25 21:09:14.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- php
+tags:
+- GMail SMTP
+- php mail function
+- php mail()
+- ubuntu
+- ubuntu postfix
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '1158133339'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>If you want to use a Gmail account as a free SMTP server on your Ubuntu-Linux server, you will find this article useful. This guide is tested with Ubuntu 12.04. If you face any issue, feel free to use comments-section below.</p>
+<p><strong>First, install all necessary packages:</strong></p>
+<p><code>sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules</code></p>
+<p>If you do not have postfix installed before, postfix configuration wizard will ask you some questions. Just select your server as Internet Site.</p>
+<p><strong>Then open your postfix config file:</strong></p>
+<p><code>vim /etc/postfix/main.cf</code></p>
+<p><strong>and following lines to it:</strong></p>
+<p><code>relayhost = [smtp.gmail.com]:587<br />
+smtp_sasl_auth_enable = yes<br />
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd<br />
+smtp_sasl_security_options = noanonymous<br />
+smtp_tls_CAfile = /etc/postfix/cacert.pem<br />
+smtp_use_tls = yes</code></p>
+<p><strong>You might have noticed that we haven’t specified our Gmail username and password in above lines. They will go into a different file. Open/Create</strong></p>
+<p><code> vim /etc/postfix/sasl_passwd </code></p>
+<p><strong>And add following line:</strong></p>
+<p><code>[smtp.gmail.com]:587 USERNAME@gmail.com:PASSWORD</code><code></code></p>
+<p><strong>Next, validate certificates to avoid running into error. Just run following command:</strong></p>
+<p><code>cat /etc/ssl/certs/Thawte_Premium_Server_CA.pem | sudo tee -a /etc/postfix/cacert.pem</code></p>
+<p><strong>Note: If you run into issues with above command, try changing certificate name to <code>thawte_Primary_Root_CA.pem</code> in above command.</strong></p>
+<p><strong>Finally, reload postfix config for changes to take effect:</strong></p>
+<p><code>sudo /etc/init.d/postfix reload</code><br />
+<strong>Check if mails are sent via Gmail SMTP server</strong></p>
+<p>If you have configured everything correctly, following command should generate a test mail from your server to your mailbox.</p>
+<p><code>echo "Test mail from postfix" | mail -s "Test Postfix" you@example.com</code></p>
+<p><strong>Thanks. </strong></p>

@@ -1,0 +1,101 @@
+---
+layout: post
+title: How to use YOWSUP (The python WhatsApp library) in ubuntu
+date: 2017-09-21 11:00:02.000000000 +05:30
+type: post
+published: true
+status: publish
+comments: true
+categories:
+- python
+tags:
+- python whatsapp api
+- whatsapp api
+- whatsapp library
+- yowsup cli
+- yowsup installation
+- yowsup registration
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '9513561393'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>Yowsup is a python library that allows you to login and use the WhatsApp service and provides you with all capabilities of an official WhatsApp client, allowing you to create a full-fledged custom WhatsApp client.</p>
+<h2 id="step1" class="step-title">Installation</h2>
+<pre>sudo apt-get update</pre>
+<p>Prepare the system with the necessary components to Yowsup</p>
+<pre>sudo apt-get install python-dateutil</pre>
+<pre>sudo apt-get install python-setuptools</pre>
+<pre>sudo apt-get install python-dev</pre>
+<pre>sudo apt-get install libevent-dev</pre>
+<pre>sudo apt-get install ncurses-dev</pre>
+<p>Download the library with the command</p>
+<pre>git clone git://github.com/tgalal/yowsup.git</pre>
+<p>Navigate to the folder</p>
+<pre>cd yowsup</pre>
+<p>and install the library with the command</p>
+<pre>sudo python setup.py install</pre>
+<h2 id="step2" class="step-title">Registration</h2>
+<p>After installing the library we have to register the device to use WhatsApp. Yowsup comes with a cross platform command-line frontend called yowsup-cli. It provides you with the options of registration, and provides a few demos such as a command line client.</p>
+<ul>
+<li>First of all create a file <code>vim dexMD5.py</code></li>
+<li>Now paste the code from <a href="https://github.com/mgp25/classesMD5-64/edit/master/dexMD5.py" target="_blank" rel="noopener">this</a> file.</li>
+<li>Then save and quit the file.</li>
+<li>Now, Download latest version of WhatsApp from <a href="https://www.whatsapp.com/android/" target="_blank" rel="noopener">here</a></li>
+<li>Copy the Downloaded WhatsApp.apk to current directory.</li>
+<li>Run the command <code>python dexMD5.py WhatsApp.apk</code></li>
+<li>You will get the output like
+<pre>Version: 2.17.344
+ClassesDex: OxVSHnBDYNBZmSiYzwF9+A==</pre>
+</li>
+<li>You have to write that in
+<pre>yowsup/env/env_android.py</pre>
+<p>(replacing <code>_MD5_CLASSES</code> and <code>_VERSION</code> vars) then run:</li>
+<li><code>python setup.py build</code></li>
+<li><code>python setup.py install</code></li>
+</ul>
+<p>WhatsApp registration involves 2 steps. First you need to request a registration code. And then you resume the registration with code you got.</p>
+<p>Request a code with command</p>
+<pre>python yowsup-cli registration --requestcode sms --phone 91xxxxxxxxxx --cc 91 --mcc 222 --mnc 10 -E android</pre>
+<p><strong>Please add country code as well before mobile no.</strong></p>
+<p>Replace with your data ,</p>
+<p>cc is your country code in this example 91 is for India,</p>
+<p>mcc is Mobile Country Code & mnc is Mobile Network Code check your <a href="https://www.twilio.com/lookup" rel="nofollow">here</a></p>
+<p>Enter your mobile no. with country code and it will give you mcc and mnc code</p>
+<p>You should receive on your phone a sms message with a code like xxx-xxx</p>
+<p>Send a message to request registration with this command, (replace xxx-xxx with code you received)</p>
+<pre>python yowsup-cli registration --register xxx-xxx --phone 91xxxxxxxxxx --cc 91 -E android</pre>
+<p>If all goes well, we should get a message like this</p>
+<pre>status: ok
+kind: free
+pw: xxxxxxxxxxxxxxxxxx= #this is the password
+price: ₹ 55
+price_expiration: 1509040085
+currency: INR
+cost: 55.00
+expiration: 4444444444.0
+login: 91xxxxxxxxxx
+type: new</pre>
+<p>&nbsp;</p>
+<p>Create a file to save your credentials in current directory</p>
+<pre>sudo vim config</pre>
+<p>with this content</p>
+<pre>## Actual config starts below ##
+  cc=91 #if not specified it will be autodetected
+  phone=91xxxxxxxxxx
+  password=xxxxxxxxxxxxxxx=</pre>
+<p>Ok, we're ready for the test,</p>
+<pre>yowsup-cli demos --yowsup --config config</pre>
+<p>You can see Yowsup prompt</p>
+<p>If type "/help" you can see all available commands</p>
+<p>First use the '/L' command for login; to send a message type</p>
+<pre>/message send 91xxxxxxxxxx "This is a message sent from Command line"</pre>
+<p>replace xxx with the recipient number</p>
+<p>If you respond with a message it will be displayed.</p>
+<p>Thanks. :)</p>

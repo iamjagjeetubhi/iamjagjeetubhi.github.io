@@ -1,0 +1,34 @@
+---
+layout: blog
+title: Blog
+---
+
+<div class="col-md-12">
+
+  {% for post in paginator.posts %}
+
+  <div class="card shadow shadow-lg--hover mt-5">
+    <div class="card-body">
+      <div class="d-flex px-3">
+        <div>
+        </div>
+        <div class="pl-4">
+          <h5 class="title text-success">
+          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h5>
+          <p>{{ post.content | strip_html | truncatewords:75 }}</p>
+          <a href="{{ post.url | prepend: site.baseurl }}">Continue reading...</a>
+          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    {% endfor %}
+
+    <br>
+
+   {% include pagination.html %}
+
+      </div>

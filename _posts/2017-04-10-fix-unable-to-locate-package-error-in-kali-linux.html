@@ -1,0 +1,46 @@
+---
+layout: post
+title: Fix "Unable to locate package" error in Kali Linux.
+date: 2017-04-10 17:07:39.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Kali Linux
+tags:
+- kali
+- linux
+- sources.list
+- unable to locate package
+meta:
+  _publicize_job_id: '3844658354'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>This error is basically due to entries in the sources.list file.<br />
+<strong> Open /etc/apt/ using following command:</strong><br />
+<code> cd /etc/apt/</code></p>
+<p><strong>Open the sources.list file using:</strong></p>
+<p><code> sudo nano sources.list </code></p>
+<p><strong>Now paste the following code at the last line of the file:</strong></p>
+<p>deb http://http.kali.org/kali kali-rolling main contrib non-free<br />
+# For source package access, uncomment the following line<br />
+# deb-src http://http.kali.org/kali kali-rolling main contrib non-free<br />
+deb http://http.kali.org/kali sana main non-free contrib<br />
+deb http://security.kali.org/kali-security sana/updates main contrib non-free<br />
+# For source package access, uncomment the following line<br />
+# deb-src http://http.kali.org/kali sana main non-free contrib<br />
+# deb-src http://security.kali.org/kali-security sana/updates main contrib non-free<br />
+deb http://old.kali.org/kali moto main non-free contrib<br />
+# For source package access, uncomment the following line<br />
+# deb-src http://old.kali.org/kali moto main non-free contrib</p>
+<p><strong>Write and quit the file using CTRL+O and CTRL+X<br />
+</strong></p>
+<p><strong>Now just run:</strong><br />
+<code> sudo apt-get update</code></p>
+<p><strong>Now your error is gone you can install any package :)</strong></p>
+<p>Thanks for reading.</p>

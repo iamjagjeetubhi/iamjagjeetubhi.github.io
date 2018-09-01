@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    {% include head.html %}
+    <body>
+<main class="profile-page">
+  <section class="section-profile-cover section-shaped my-0">
+    <div class="shape shape-style-1 shape-primary shape-skew alpha-4">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+  <section class="section section-skew">
+    <div class="container">
+      <div class="card card-profile shadow mt--300">
+        <div class="px-4">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="#">
+                  <img src="{{ site.url }}{{ page.profile_photo }}" class="rounded-circle">
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+              <div class="card-profile-actions py-4 mt-lg-0">
+                <a href="/blog" class="btn btn-1 btn-info mr-4">Blog</a>
+                <a href="mailto:{{ site.email }}" class="btn btn-1 btn-default float-right" target="_top">Email</a>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-1">
+              <div class="card-profile-stats d-flex justify-content-center">
+                <div>
+                <a href="{{ site.links.github }}" target="_blank">
+            <span class="heading">
+              <i class="fa fa-github fa-2x"></i></span>
+                  <span class="description">Github</span>
+                </div>
+                <div>
+                <a href="{{ site.links.instagram }}" target="_blank">
+            <span class="heading">
+              <i class="fa fa- fa-instagram fa-2x"></i></span>
+                  <span class="description">Instagram</span>
+                </div>
+                <div>
+                <a href="{{ site.links.linkedin }}" target="_blank">
+            <span class="heading">
+              <i class="fa fa-linkedin fa-2x"></i></span>
+                  <span class="description">LinkedIn</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-5">
+            <h3>{{ site.author }}
+              <span class="font-weight-light">, {{ page.age }}</span>
+            </h3>
+            <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>{{ page.location }}</div>
+            <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>{{ page.tagline }}</div>
+            <div><i class="ni education_hat mr-2"></i>{{ page.college }}</div>
+          </div>
+          <div class="mt-5 py-5 border-top text-center">
+            <div class="row justify-content-center">
+              <div class="col-lg-9">
+                <p>{{ content }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% include footer.html %}
+</body>
+</html>

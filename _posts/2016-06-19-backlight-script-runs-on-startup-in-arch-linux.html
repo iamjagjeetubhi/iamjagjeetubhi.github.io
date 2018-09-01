@@ -1,0 +1,51 @@
+---
+layout: post
+title: Backlight Script runs on startup in Arch Linux.
+date: 2016-06-19 16:53:25.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23987353616'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>Screen brightness might be tricky to control. There are many ways to adjust the screen backlight of a monitor or laptop. I installed  <code>xbacklight</code> in my Arch Linux  using :</p>
+<pre>$ sudo pacman -S xbacklight</pre>
+<p>In desktop environment it is easy to control brightness using:</p>
+<pre>$ xbacklight +10</pre>
+<pre>$ xbacklight -10</pre>
+<p>But these commands not working in <code>console mode</code>.</p>
+<p>The brightness of the screen backlight is adjusted by setting the power level of the backlight LEDs or cathodes. The power level can often be controlled using the ACPI kernel module for video. An interface to this module is provided via a folder in the sysfs at <code>/sys/class/backlight</code>.</p>
+<p>The name of the folder depends on the graphics card model:</p>
+<pre>$ ls /sys/class/backlight/</pre>
+<p>In my case it is:</p>
+<pre>intel_backlight
+</pre>
+<p>In this directory you will find files named  <code>brightness</code> and <code>max_brightness</code>. The brightness can be set by writing a number to <code>brightness</code>. Set it using command :</p>
+<pre> $ sudo tee /sys/class/backlight/acpi_video0/brightness &lt;&lt;&lt; 300</pre>
+<p><code>tee</code> - read from standard input and write to standard output and files.</p>
+<p>The maximum brightness can be found by reading from <code>max_brightness</code>.</p>
+<p><strong>Now create a Startup script.</strong></p>
+<p>Open directory <code>/etc/local.d/</code></p>
+<p>Create a script with extension <code>.start</code> (with the suffix <code>.start</code> will be executed at boot time, all scripts with suffix <code>.stop</code> at shutdown time)</p>
+<p>Now add the code:</p>
+<pre>#!/bin/sh
+sudo tee /sys/class/backlight/intel_backlight/brightness &lt;&lt;&lt; 300</pre>
+<p>Afterwards mark the script as executable:</p>
+<pre>$ chmod +x /etc/local.d/brightness.start</pre>
+<p>To start the local.d scripts at boot time, add its init.d script to the default runlevel:</p>
+<pre>$ rc-update add local default</pre>
+<p>Now start the service by making OpenRC check for stopped services in the default runlevel:</p>
+<pre>$ rc</pre>
+<p>Now on every startup brightness will automatically set to 300.<br />
+Thanks. :)</p>

@@ -1,0 +1,35 @@
+---
+layout: post
+title: Connect to Wifi from command line in Linux.
+date: 2016-06-19 17:49:32.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23988615152'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p><strong>nmcli</strong> is a tool that allows NetworkManager management from command line.</p>
+<p>Get Wifi status:</p>
+<pre>$ nmcli radio wifi</pre>
+<p>Turn wifi on or off:</p>
+<pre>$ nmcli radio wifi on|off</pre>
+<p>List available access points(AP) to connect to:</p>
+<pre>$ nmcli device wifi list</pre>
+<p>Refresh previous list:</p>
+<pre>$ nmcli device wifi rescan</pre>
+<p>Create a new connection to an open AP:</p>
+<pre>$ nmcli device wifi connect SSID</pre>
+<p>Create a new connection to a password protected AP:</p>
+<pre>$ nmcli device wifi connect SSID password *password*</pre>
+<p>Thanks. :)</p>

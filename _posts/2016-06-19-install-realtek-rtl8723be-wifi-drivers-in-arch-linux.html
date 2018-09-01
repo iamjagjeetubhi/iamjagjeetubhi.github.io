@@ -1,0 +1,46 @@
+---
+layout: post
+title: Install Realtek rtl8723be Wifi Drivers in Arch Linux.
+date: 2016-06-19 17:31:36.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23988228282'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>First of all make sure that the necessary packages are installed.</p>
+<pre> $ sudo pacman -S base-devel git linux-headers iw rfkill wireless_tools</pre>
+<p>Then, clone the <code>lwfinger/rtlwifi_new</code> repository and checkout the <code>rock.new_btcoex</code> branch.</p>
+<pre>$ git clone https://github.com/lwfinger/rtlwifi_new.git
+$ cd rtlwifi_new
+$ git checkout rock.new_btcoex</pre>
+<p>Now, build the drivers and install the modules.</p>
+<pre>$ make clean &amp;&amp; make
+$ sudo make install</pre>
+<p>If sudo make install succeeds, update your initramfs.</p>
+<pre>$ sudo mkinitcpio -p linux</pre>
+<p>Then, reboot your system to make sure you are running the new module.<br />
+After rebooting, you can now examine which antenna port is connected by loading the module with a specific antenna, scanning for networks and comparing the scan results.<br />
+Open <code>vim /etc/modprobe.d/rtl8723be.conf</code>. You will see like:</p>
+<pre>options rtl8723be fwlps=N ips=N swlps=N swenc=Y disable_watchdog=1 ant_sel=X</pre>
+<p>In my case, <code>ant_sel=1</code> provided a lot more networks with much higher signal strength than <code>ant_sel=2</code>. Finally, you can append the correct <code>ant_sel</code> parameter in your <code>/etc/modprobe.d/rtl8723be.conf</code>, where <code>X</code> is your antenna number.<br />
+You can set it using commands:</p>
+<pre>$ sudo rmmod rtl8723be
+$ sudo modprobe rtl8723be ant_sel=1
+$ sudo iwlist wlan0 scan
+$ sudo rmmod rtl8723be
+$ sudo modprobe rtl8723be ant_sel=2
+$ sudo iwlist wlan0 scan</pre>
+<p>I hope this helps!<br />
+Thanks. :)</p>

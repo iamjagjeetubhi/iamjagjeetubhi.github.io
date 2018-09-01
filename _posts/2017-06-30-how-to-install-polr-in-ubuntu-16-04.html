@@ -1,0 +1,81 @@
+---
+layout: post
+title: How to install Polr in Ubuntu 16.04
+date: 2017-06-30 10:48:37.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '6632744783'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>We can get the latest release of Polr from:</p>
+<p><code>https://github.com/cydrobolt/polr/releases</code></p>
+<p>Please install the following packages that are required to run the polr</p>
+<p><code>sudo apt-get install php-pdo<br />
+sudo apt-get install php-mysql<br />
+sudo apt-get install php-mbstring<br />
+sudo apt-get install php-tokenizer<br />
+sudo apt-get install php-json<br />
+sudo apt-get install php-curl</code></p>
+<p>Open the directory <strong>/var/www/</strong></p>
+<p><code>cd /var/www/</code></p>
+<p>Download the latest release in this directory</p>
+<p><code>sudo wget https://github.com/cydrobolt/polr/archive/2.2.0.zip</code></p>
+<p>Unzip the 2.2.0.zip</p>
+<p><code>sudo unzip 2.2.0.zip</code></p>
+<p>Rename the directory polr-2.2.0 to polr</p>
+<p><code>sudo mv polr-2.2.0 polr</code></p>
+<p>Now give it permissions</p>
+<p><code>sudo chmod -R 755 polr</code></p>
+<p>Also change the ownership</p>
+<p><code>sudo chown -R www-data polr</code></p>
+<p>Now download and install the composer locally in Polr directory</p>
+<p><code>cd polr<br />
+sudo php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"<br />
+sudo php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"<br />
+sudo php composer-setup.php<br />
+sudo php -r "unlink('composer-setup.php');"<br />
+sudo php composer.phar install --no-dev -o</code></p>
+<p>To run Polr on Apache, you will need to create a new Apache configuration file.</p>
+<p><code>cd /etc/apache2/sites-available/</code></p>
+<p>Create a file polr.conf</p>
+<p><code>sudo vim polr.conf</code></p>
+<p>Add the following content to your file.</p>
+<p>Replace <code>example.com</code> with your server's external address and restart Apache when done.<br />
+<code><br />
+    ServerName example.com<br />
+    ServerAlias example.com</p>
+<p>    DocumentRoot "/var/www/polr/public"</p>
+<p>        Require all granted<br />
+        Options Indexes FollowSymLinks<br />
+        AllowOverride All<br />
+        Order allow,deny<br />
+        Allow from all</p>
+<p></code></p>
+<p>If <code>mod_rewrite</code> is not already enabled, you will need to enable it like so:</p>
+<p><code>sudo a2enmod rewrite</code></p>
+<p>Now add the polr.conf file to apache</p>
+<p><code>sudo a2ensite polr.conf</code></p>
+<p>Now reload the apache web server</p>
+<p><code>sudo service apache2 restart</code></p>
+<p>You must create a database for Polr to use before you can complete the setup script. To create a database for Polr, you can log onto your <code>mysql</code> shell and run the following command:</p>
+<p><code> CREATE DATABASE polr;</code></p>
+<p>Once your server is properly set up, you will need to configure Polr and enable it to access the database.</p>
+<p><code>cd /var/www/polr/</code></p>
+<p>Copy the <code>.env.setup</code> file to <code>.env</code> in your website's root directory.</p>
+<p><code>sudo cp .env.setup .env</code></p>
+<p>Now open your browser and open</p>
+<p><code>http://example.com/setup</code></p>
+<p>You will see a polr setup page and fill the required fields.</p>
+<p>Thanks.</p>

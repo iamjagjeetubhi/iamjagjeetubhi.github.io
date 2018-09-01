@@ -1,0 +1,36 @@
+---
+layout: post
+title: Change DPI in LXDE.
+date: 2017-07-01 08:26:02.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- Daily Dairy
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '6661748716'
+author:
+  login: iamjagjeetubhi
+  email: iamjagjeetubhi@gmail.com
+  display_name: iamjagjeetubhi
+  first_name: Jagjeet
+  last_name: Singh
+---
+<p>Today, I am going to show you how to change DPI in LXDE.</p>
+<p>There is no need to change DPI in normal screens. But the screens with high resolution results in very small font size.</p>
+<p>First of all find the right dpi for your resolution <a href="http://dpi.lv/">here</a>.</p>
+<p>Now create a file ~/.Xresources</p>
+<p><code>sudo vim ~/.Xresources</code></p>
+<p>And add the following content in it (<strong>Replace the DPI with your own)</strong></p>
+<p><code>! Xft settings-----------<br />
+Xft.dpi: 96<br />
+Xft.antialias: true<br />
+Xft.rgba: rgb<br />
+Xft.hinting: true<br />
+Xft.hintstyle: hintslight<br />
+</code></p>
+<p>Restart the LXDE</p>
+<p><code>sudo service lightdm restart</code></p>
