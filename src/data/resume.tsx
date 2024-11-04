@@ -196,17 +196,17 @@ export const DATA = {
         {
           type: "Website",
           href: "https://ladle.cloud",
-          icon: <Icons.globe />,
+          icon: <Icons.globe className="h-4 w-4"/>,
         },
         {
           type: "App Store",
           href: "https://apps.apple.com/ca/app/ladle/id6474590754",  // Updated App Store link
-          icon: <Icons.globe />,
+          icon: <Icons.link className="h-4 w-4"/>,
         },
         {
           type: "Play Store",
           href: "https://play.google.com/store/apps/details?id=com.ladle.app",  // Updated Play Store link
-          icon: <Icons.globe />,
+          icon: <Icons.link className="h-4 w-4"/>,
         }
       ]
     },
@@ -227,7 +227,7 @@ export const DATA = {
         {
           type: "Website",
           href: "https://goseta.in",
-          icon: <Icons.globe />,
+          icon: <Icons.globe className="h-4 w-4"/>,
         }
       ]
     }
