@@ -117,15 +117,16 @@ export default function Page() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  My Projects
+                  Projects
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-3xl">
+                  Building, Learning, and Iterating
                 </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
+                <p className="text-muted-foreground text-sm md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
+                  From architecting enterprise systems handling 250K+ daily orders for major brands,
+                  to launching innovative startups that taught invaluable lessons in product-market fit
+                  and user experience. Each project represents a journey of technical excellence,
+                  rapid iteration, and continuous learning in the ever-evolving tech landscape.
                 </p>
               </div>
             </div>
@@ -144,7 +145,6 @@ export default function Page() {
                   dates={project.dates}
                   tags={project.technologies}
                   image={project.image}
-                  video={project.video}
                   links={project.links}
                 />
               </BlurFade>
@@ -152,70 +152,69 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="hackathons">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Hackathons
+      {/* {DATA.hackathons && DATA.hackathons.length > 0 && (
+        <section id="hackathons">
+          <div className="space-y-12 w-full py-12">
+            <BlurFade delay={BLUR_FADE_DELAY * 13}>
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                    Hackathons
+                  </div>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                    I like building things
+                  </h2>
+                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    During my time in university, I attended{" "}
+                    {DATA.hackathons.length}+ hackathons. People from around the
+                    country would come together and build incredible things in 2-3
+                    days. It was eye-opening to see the endless possibilities
+                    brought to life by a group of motivated and passionate
+                    individuals.
+                  </p>
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  I like building things
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  During my time in university, I attended{" "}
-                  {DATA.hackathons.length}+ hackathons. People from around the
-                  country would come together and build incredible things in 2-3
-                  days. It was eye-opening to see the endless possibilities
-                  brought to life by a group of motivated and passionate
-                  individuals.
-                </p>
               </div>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    location={project.location}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
-          </BlurFade>
-        </div>
-      </section>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 14}>
+              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                {DATA.hackathons.map((project, id) => (
+                  <BlurFade
+                    key={project.title + project.dates}
+                    delay={BLUR_FADE_DELAY * 15 + id * 0.05}
+                  >
+                    <HackathonCard
+                      title={project.title}
+                      description={project.description}
+                      location={project.location}
+                      dates={project.dates}
+                      image={project.image}
+                      links={project.links}
+                    />
+                  </BlurFade>
+                ))}
+              </ul>
+            </BlurFade>
+          </div>
+        </section>
+      )} */}
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                Contact
+            <div className="flex flex-col items-center justify-center space-y-2 text-center">
+              <div className="space-y-1.5">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  Let&apos;s Connect
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-3xl">
+                  Ready to Create Something Amazing?
+                </h2>
+                <p className="text-muted-foreground text-sm md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed max-w-2xl mx-auto">
+                  Whether you want to discuss exciting opportunities, collaborate on projects, or just
+                  chat, I&apos;d love to hear from you!
+                  <br />
+                  <em>Every great collaboration starts with a simple hello!</em>
+                </p>
               </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
-              </h2>
-              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me a dm{" "}
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
-                >
-                  with a direct question on twitter
-                </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
-              </p>
             </div>
           </BlurFade>
         </div>
