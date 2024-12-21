@@ -200,12 +200,12 @@ export const DATA = {
         },
         {
           type: "App Store",
-          href: "https://apps.apple.com/ca/app/ladle/id6474590754",  // Updated App Store link
+          href: "https://apps.apple.com/ca/app/ladle-gateway-to-india/id6504798678",  // Updated App Store link
           icon: <Icons.link className="h-4 w-4"/>,
         },
         {
           type: "Play Store",
-          href: "https://play.google.com/store/apps/details?id=com.ladle.app",  // Updated Play Store link
+          href: "https://play.google.com/store/apps/details?id=com.ladle.cloud&pcampaignid=web_share",  // Updated Play Store link
           icon: <Icons.link className="h-4 w-4"/>,
         }
       ]
